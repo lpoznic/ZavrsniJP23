@@ -24,7 +24,7 @@ public class Start {
         
         Kupac kupac = new Kupac();
         kupac.setAdresa("JJ Strossmayera 149");
-        kupac.setEmail("google");
+        kupac.setEmail("lpoznic@outlook.com");
         kupac.setIme("Luka");
         kupac.setPrezime("Pzn");
         kupac.setKontakt("91743681");
