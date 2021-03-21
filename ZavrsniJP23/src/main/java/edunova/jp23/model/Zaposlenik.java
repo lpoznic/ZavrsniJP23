@@ -24,4 +24,15 @@ public class Zaposlenik extends Osoba{
         this.iban = iban;
     }
     
+    @Override
+    public String toString() {
+        if(getIme() == null || getIme().isEmpty()){
+            return "[Ime nije definirano]";
+        }
+        if(getPrezime() == null || getPrezime().isEmpty()){
+            return "[Prezime nije definirano]";
+        }
+        return getIme() + " " + getPrezime();
+    }
+    
 }

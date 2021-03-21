@@ -5,13 +5,16 @@
  */
 package edunova.jp23.model;
 
+import edunova.jp23.view.Aplikacija;
 import java.math.BigDecimal;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -77,5 +80,16 @@ public class Narudzba extends Entitet{
         this.ukupnaCijena = ukupnaCijena;
     }
     private BigDecimal ukupnaCijena;
+    
+    @Override
+    public String toString() {
+        
+        Date d = new Date();
+        SimpleDateFormat df = new SimpleDateFormat("dd. MMMM YYYY. HH:mm:ss");
+        if(d == null || d.toString().isEmpty()){
+            return "[Datum nije definiran]";
+        }
+        return df.format(d);
+    }
     
 }

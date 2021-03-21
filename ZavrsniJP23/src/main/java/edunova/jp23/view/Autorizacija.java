@@ -5,7 +5,13 @@
  */
 package edunova.jp23.view;
 
+import edunova.jp23.controller.ObradaOperater;
+import edunova.jp23.model.Operater;
 import java.awt.event.KeyEvent;
+import javax.mail.internet.AddressException;
+import javax.mail.internet.InternetAddress;
+import javax.swing.JComponent;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -20,7 +26,7 @@ public class Autorizacija extends javax.swing.JFrame {
         initComponents();
         setTitle(Aplikacija.NASLOV_APP);
         txtMail.setText("lpoznic@outlook.com");
-        txtZaporka.setText("edunova");
+        pswZaporka.setText("edunova");
     }
 
     /**
@@ -34,10 +40,10 @@ public class Autorizacija extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         txtMail = new javax.swing.JTextField();
-        txtZaporka = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         btnPrijava = new javax.swing.JToggleButton();
+        pswZaporka = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -54,17 +60,6 @@ public class Autorizacija extends javax.swing.JFrame {
             }
         });
 
-        txtZaporka.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtZaporkaActionPerformed(evt);
-            }
-        });
-        txtZaporka.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                txtZaporkaKeyReleased(evt);
-            }
-        });
-
         jLabel2.setText("Zaporka");
 
         jLabel3.setIcon(new javax.swing.ImageIcon("C:\\Users\\Pozna\\Downloads\\1611857242-141.138.34.22.png")); // NOI18N
@@ -74,6 +69,13 @@ public class Autorizacija extends javax.swing.JFrame {
         btnPrijava.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnPrijavaActionPerformed(evt);
+            }
+        });
+
+        pswZaporka.setText("jPasswordField1");
+        pswZaporka.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                pswZaporkaKeyReleased(evt);
             }
         });
 
@@ -89,14 +91,17 @@ public class Autorizacija extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(50, 50, 50)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtZaporka, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtMail, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(btnPrijava, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(46, 46, 46)))))
+                                .addGap(46, 46, 46))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtMail, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(pswZaporka, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(0, 0, Short.MAX_VALUE)))))
                 .addContainerGap(20, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -112,17 +117,13 @@ public class Autorizacija extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel2)
                     .addComponent(btnPrijava))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtZaporka, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(pswZaporka, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void txtZaporkaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtZaporkaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtZaporkaActionPerformed
 
     private void btnPrijavaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrijavaActionPerformed
         prijaviSe();
@@ -135,16 +136,16 @@ public class Autorizacija extends javax.swing.JFrame {
     private void txtMailKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtMailKeyReleased
         if(evt.getKeyCode()==KeyEvent.VK_ENTER 
                 && !txtMail.getText().isEmpty()){
-           txtZaporka.requestFocus();
+           pswZaporka.requestFocus();
         }
     }//GEN-LAST:event_txtMailKeyReleased
 
-    private void txtZaporkaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtZaporkaKeyReleased
+    private void pswZaporkaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_pswZaporkaKeyReleased
         if(evt.getKeyCode()==KeyEvent.VK_ENTER &&
                 pswZaporka.getPassword().length>0){
             prijaviSe();
         }
-    }//GEN-LAST:event_txtZaporkaKeyReleased
+    }//GEN-LAST:event_pswZaporkaKeyReleased
 
     /**
      * @param args the command line arguments
@@ -186,7 +187,58 @@ public class Autorizacija extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JPasswordField pswZaporka;
     private javax.swing.JTextField txtMail;
-    private javax.swing.JTextField txtZaporka;
     // End of variables declaration//GEN-END:variables
+
+    private void prijaviSe() {
+    
+        if(txtMail.getText().isEmpty()){
+            obradiGresku(txtMail, "Obavezno email");
+         //   JOptionPane.showMessageDialog(rootPane, "Obavezno email");
+         //   txtMail.requestFocus();
+            return;
+        }
+        
+        try {
+            InternetAddress email=new InternetAddress(txtMail.getText());
+            email.validate();
+        } catch (AddressException e) {
+            obradiGresku(txtMail, "Email nije ispravan");
+            //JOptionPane.showMessageDialog(rootPane, "Email nije ispravan");
+           // txtMail.requestFocus();
+            return;
+        }
+        
+      
+        if(pswZaporka.getPassword().length==0){
+            obradiGresku(pswZaporka, "Obavezno lozinka");
+           // JOptionPane.showMessageDialog(rootPane, "Obavezno lozinka");
+          //  pswZaporkap.requestFocus();
+            return;
+        }
+        
+        // znam kako je postavljen email i loznika
+        ObradaOperater oo = new ObradaOperater();
+        Operater o = oo.autoriziraj(txtMail.getText(), pswZaporka.getPassword());
+        
+        if(o==null){
+            obradiGresku(pswZaporka, "Email i lozinka ne odgovaraju");
+            return;
+        }
+        
+        // imamo problem primjene objekta pod ingerencijom Hibernate
+        // jer automatski sprema u bazu -  it will be saved automatically.
+        // https://stackoverflow.com/questions/30955910/if-i-modify-a-hibernate-entity-after-doing-a-save-when-i-commit-would-the-chan
+        // o.setLozinka(null);
+        Aplikacija.operater=o;
+        new Izbornik().setVisible(true);
+        dispose();
+        
+    }
+    
+    private void obradiGresku(JComponent komponenta, String poruka){
+        komponenta.requestFocus();
+        JOptionPane.showMessageDialog(rootPane, poruka);
+    }
 }

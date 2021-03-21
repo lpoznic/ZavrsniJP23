@@ -32,6 +32,19 @@ public class Kupac extends Osoba{
     public void setKontakt(String kontakt) {
         this.kontakt = kontakt;
     }
+
+    @Override
+    public String toString() {
+        if(getIme() == null || getIme().isEmpty()){
+            return "[Ime nije definirano]";
+        }
+        if(getPrezime() == null || getPrezime().isEmpty()){
+            return "[Prezime nije definirano]";
+        }
+        return getIme() + " " + getPrezime();
+    }
+    
+    
     
     
 }
