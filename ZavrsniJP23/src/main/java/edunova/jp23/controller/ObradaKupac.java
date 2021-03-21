@@ -7,6 +7,7 @@ package edunova.jp23.controller;
 
 import edunova.jp23.model.Kupac;
 import edunova.jp23.util.EdunovaException;
+import java.math.BigDecimal;
 import java.util.List;
 
 /**
@@ -14,6 +15,16 @@ import java.util.List;
  * @author Pozna
  */
 public class ObradaKupac extends Obrada<Kupac>{
+
+    
+    
+    public ObradaKupac(){
+        super();
+    }
+    
+    public ObradaKupac(Kupac k){
+        super(k);
+    }
 
     @Override
     public List<Kupac> getPodaci() {
@@ -34,5 +45,9 @@ public class ObradaKupac extends Obrada<Kupac>{
     protected void kontrolaDelete() throws EdunovaException {
         
     }
+    
+    
+    
+    
     
 }
