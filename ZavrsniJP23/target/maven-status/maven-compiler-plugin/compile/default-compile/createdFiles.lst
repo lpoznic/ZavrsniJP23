@@ -1,12 +1,10 @@
 edunova\jp23\model\Dobavljac.class
-edunova\jp23\util\InitialFixtures.class
-edunova\jp23\model\Artikl.class
 edunova\jp23\start\Start.class
 edunova\jp23\model\Kupac.class
-edunova\jp23\controller\Obrada.class
-edunova\jp23\util\EdunovaException.class
 edunova\jp23\model\Entitet.class
 edunova\jp23\model\Zaposlenik.class
+edunova\jp23\model\Artikl.class
+edunova\jp23\controller\Obrada.class
+edunova\jp23\util\EdunovaException.class
 edunova\jp23\model\Narudzba.class
 edunova\jp23\model\Osoba.class
-edunova\jp23\util\HibernateUtil.class
