@@ -153,6 +153,12 @@ public class Izbornik extends javax.swing.JFrame {
             }
         });
 
+        txtKupac.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtKupacMouseClicked(evt);
+            }
+        });
+
         btnDodaj.setText("Dodaj");
         btnDodaj.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -489,13 +495,17 @@ public class Izbornik extends javax.swing.JFrame {
             obradaN.update();
             obradaN.setEntitet(new Narudzba());
             np.pocisti();
-            np.ucitaj();
+            np.ucitajNarudzba();
         } catch (EdunovaException e) {
             JOptionPane.showMessageDialog(rootPane, e.getPoruka());
         }
 
         
     }//GEN-LAST:event_lstNarudzbeValueChanged
+
+    private void txtKupacMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtKupacMouseClicked
+        
+    }//GEN-LAST:event_txtKupacMouseClicked
 
     /**
      * @param args the command line arguments
@@ -598,7 +608,7 @@ public class Izbornik extends javax.swing.JFrame {
     
     private class NarudzbaPane{
         
-        private void ucitaj() {
+        private void ucitajNarudzba() {
 
         DefaultListModel<Narudzba> m = new DefaultListModel<>();
 

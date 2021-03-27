@@ -48,5 +48,6 @@
         <mapping class="edunova.jp23.model.Dobavljac" />
         <mapping class="edunova.jp23.model.Artikl" />
         <mapping class="edunova.jp23.model.Narudzba" />
+        <mapping class="edunova.jp23.model.Operater" /> 
     </session-factory>
 </hibernate-configuration>
