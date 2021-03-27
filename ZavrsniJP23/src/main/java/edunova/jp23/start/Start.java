@@ -10,7 +10,6 @@ import edunova.jp23.util.HibernateUtil;
 import java.math.BigDecimal;
 import java.util.Date;
 import org.hibernate.Session;
-import edunova.jp23.view.DobavljacProzor;
 
 /**
  *
@@ -20,7 +19,13 @@ public class Start {
     
     public static void main(String[] args) {
         
-       DobavljacProzor dp = new DobavljacProzor();
+       Session s = HibernateUtil.getSession();
+        s.beginTransaction();
+        
+        
+       
+
+        s.getTransaction().commit();
         
     }
     
