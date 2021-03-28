@@ -175,9 +175,9 @@ public class DobavljacProzor extends javax.swing.JFrame {
 
         // ovo se može zamijeniti tkz. Binding
         txtNazivDobavljaca.setText(obrada.getEntitet().getNaziv());
-        if (obrada.getEntitet().getImeVlasnika()!= null) {
+        try {
             txtImeVlasnika.setText(obrada.getEntitet().getImeVlasnika());
-        } else {
+        } catch(Exception e) {
             txtImeVlasnika.setText("");
         }
         try {

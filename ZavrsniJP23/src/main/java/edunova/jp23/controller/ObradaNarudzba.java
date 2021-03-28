@@ -5,6 +5,7 @@
  */
 package edunova.jp23.controller;
 
+import edunova.jp23.model.Artikl;
 import edunova.jp23.model.Narudzba;
 import edunova.jp23.util.EdunovaException;
 import java.math.BigDecimal;
@@ -20,7 +21,10 @@ public class ObradaNarudzba extends Obrada<Narudzba>{
     public List<Narudzba> getPodaci() {
         return session.createQuery("from Narudzba").list();
     }
-
+    public List<Artikl> getArtikli(){
+        return session.createQuery("from Narudzba.Artikl").list();
+    }
+    
     @Override
     protected void kontrolaCreate() throws EdunovaException {
         kontrolaCijena();

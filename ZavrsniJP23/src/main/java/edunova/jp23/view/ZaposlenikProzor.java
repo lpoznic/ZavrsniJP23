@@ -12,6 +12,7 @@ import edunova.jp23.util.EdunovaException;
 import java.math.BigDecimal;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
+import org.mindrot.jbcrypt.BCrypt;
 
 /**
  *
@@ -324,6 +325,7 @@ public class ZaposlenikProzor extends javax.swing.JFrame {
         } catch (Exception e) {
             entitet.setOib("");
         }
+        entitet.setLozinka(BCrypt.hashpw("edunova", BCrypt.gensalt()));
 
     }
 

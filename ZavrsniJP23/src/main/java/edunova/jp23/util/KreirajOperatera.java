@@ -22,7 +22,7 @@ public class KreirajOperatera {
         o.setPrezime("Poznić");
         o.setEmail("lpoznic@outlook.com");
         o.setLozinka(BCrypt.hashpw("edunova", BCrypt.gensalt()));
-        o.setOib("40654655739");
+        o.setOib("60357165308");
         
         
         ObradaOperater oo = new ObradaOperater();

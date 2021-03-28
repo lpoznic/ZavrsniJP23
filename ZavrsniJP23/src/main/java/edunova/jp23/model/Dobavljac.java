@@ -44,10 +44,10 @@ public class Dobavljac extends Entitet{
     
     @Override
     public String toString() {
-        if(getImeVlasnika()==null || getImeVlasnika().isEmpty()){
-            return "[Ime vlasnika nije definirano]";
+        if(getNaziv()==null || getNaziv().isEmpty()){
+            return "[Naziv dobavljača nije definiran]";
         }
-        return getImeVlasnika();
+        return getNaziv();
     }
     
 }
