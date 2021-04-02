@@ -8,6 +8,7 @@ package edunova.jp23.model;
 import edunova.jp23.view.Aplikacija;
 import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Entity;
@@ -28,17 +29,7 @@ public class Narudzba extends Entitet{
     private Zaposlenik zaposlenik;
     @OneToOne
     private Kupac kupac;
-    private int brojRacuna;
-    @ManyToMany
-    private List<Artikl> artikli;
-
-    public List<Artikl> getArtikli() {
-        return artikli;
-    }
-
-    public void setArtikli(List<Artikl> artikli) {
-        this.artikli = artikli;
-    }
+    private long brojRacuna = getId();
 
     public Date getDatum() {
         return datum;
@@ -64,11 +55,11 @@ public class Narudzba extends Entitet{
         this.kupac = kupac;
     }
 
-    public int getBrojRacuna() {
+    public long getBrojRacuna() {
         return brojRacuna;
     }
 
-    public void setBrojRacuna(int brojRacuna) {
+    public void setBrojRacuna(long brojRacuna) {
         this.brojRacuna = brojRacuna;
     }
 
@@ -81,6 +72,18 @@ public class Narudzba extends Entitet{
     }
     private BigDecimal ukupnaCijena;
     
+    
+    @OneToMany(mappedBy = "Artikli")
+    private List<Clan> artikli = new ArrayList<>();
+
+    public List<Clan> getArtikli() {
+        return artikli;
+    }
+
+    public void setPolaznici(List<Clan> artikli) {
+        this.artikli = artikli;
+    }
+    
     @Override
     public String toString() {
         
@@ -89,7 +92,7 @@ public class Narudzba extends Entitet{
         if(d == null || d.toString().isEmpty()){
             return "[Datum nije definiran]";
         }
-        return df.format(d);
+        return df.format(d) + " " + getId();
     }
     
 }

@@ -11,6 +11,7 @@ import edunova.jp23.controller.ObradaKupac;
 import edunova.jp23.controller.ObradaNarudzba;
 import edunova.jp23.controller.ObradaZaposlenik;
 import edunova.jp23.model.Artikl;
+import edunova.jp23.model.Clan;
 import edunova.jp23.model.Kupac;
 import edunova.jp23.model.Narudzba;
 import edunova.jp23.util.EdunovaException;
@@ -19,6 +20,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 
@@ -68,7 +70,6 @@ public class Izbornik extends javax.swing.JFrame {
         btnDodaj = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        btnPostaviKupca = new javax.swing.JButton();
         lblTrenutniDatum = new javax.swing.JLabel();
         lblTrenutniZaposlenik = new javax.swing.JLabel();
         lblUkCijena = new javax.swing.JLabel();
@@ -79,6 +80,10 @@ public class Izbornik extends javax.swing.JFrame {
         lstSviArtikli = new javax.swing.JList<>();
         jLabel2 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
+        btnDodajUNarudzbu = new javax.swing.JButton();
+        btnUkloniIzNarudzbe = new javax.swing.JButton();
+        cmbKupci = new javax.swing.JComboBox<>();
+        btnDodaj1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -129,17 +134,10 @@ public class Izbornik extends javax.swing.JFrame {
             }
         });
 
-        btnPostaviKupca.setText("jButton3");
-        btnPostaviKupca.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnPostaviKupcaActionPerformed(evt);
-            }
-        });
-
-        lstTrenutniArtikli.setModel(new javax.swing.AbstractListModel<String>() {
+        lstTrenutniArtikli.setModel(new javax.swing.AbstractListModel<Clan>() {
             String[] strings = { "" };
             public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
+            public Object getElementAt(int i) { return strings[i]; }
         });
         lstTrenutniArtikli.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
             public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
@@ -155,9 +153,31 @@ public class Izbornik extends javax.swing.JFrame {
         });
         jScrollPane4.setViewportView(lstSviArtikli);
 
-        jLabel2.setText("Trenutni artikli");
+        jLabel2.setText("Artikli narudžbe");
 
         jLabel8.setText("Svi artikli");
+
+        btnDodajUNarudzbu.setText("+");
+        btnDodajUNarudzbu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDodajUNarudzbuActionPerformed(evt);
+            }
+        });
+
+        btnUkloniIzNarudzbe.setText("-");
+
+        cmbKupci.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbKupciActionPerformed(evt);
+            }
+        });
+
+        btnDodaj1.setText("Uredi");
+        btnDodaj1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDodaj1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -189,22 +209,33 @@ public class Izbornik extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnDodaj, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(btnPostaviKupca, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(33, 33, 33)
+                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(23, 23, 23))))
+                    .addComponent(btnDodaj1, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cmbKupci, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(117, 117, 117)
+                .addGap(18, 18, 18)
+                .addComponent(btnDodajUNarudzbu, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(32, 32, 32)
+                .addComponent(btnUkloniIzNarudzbe, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(33, 33, 33)
+                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                        .addContainerGap())))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -218,10 +249,18 @@ public class Izbornik extends javax.swing.JFrame {
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel2)
                                     .addComponent(jLabel8))
-                                .addGap(15, 15, 15)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jScrollPane4)
-                                    .addComponent(jScrollPane3)))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGap(15, 15, 15)
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jScrollPane4)
+                                            .addComponent(jScrollPane3)))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                            .addComponent(btnDodajUNarudzbu)
+                                            .addComponent(btnUkloniIzNarudzbe))
+                                        .addGap(128, 128, 128))))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(lblBrojRacuna)
@@ -241,9 +280,12 @@ public class Izbornik extends javax.swing.JFrame {
                                 .addGap(34, 34, 34)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel4)
-                                    .addComponent(jLabel1)
-                                    .addComponent(btnPostaviKupca))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
+                                    .addComponent(jLabel1))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(cmbKupci, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                                .addComponent(btnDodaj1)
+                                .addGap(30, 30, 30)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jButton2)
                                     .addComponent(btnDodaj))))
@@ -301,21 +343,16 @@ public class Izbornik extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_lstNarudzbeValueChanged
 
-    private void btnPostaviKupcaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPostaviKupcaActionPerformed
-        prozor = new KupacProzor();
-        
-    }//GEN-LAST:event_btnPostaviKupcaActionPerformed
-
     private void lstTrenutniArtikliValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_lstTrenutniArtikliValueChanged
-        if (obrada.getEntitet().getId() == null) {
+        if (obradaN.getEntitet().getId() == null) {
             JOptionPane.showMessageDialog(rootPane, "Prvo odaberite stavku");
             return;
         }
         postaviVrijednostiNaEntitet();
 
         try {
-            obrada.update();
-            obrada.setEntitet(new Artikl());
+            obradaN.update();
+            obradaN.setEntitet(new Artikl());
             ucitajTrenutneA();
         } catch (EdunovaException e) {
             JOptionPane.showMessageDialog(rootPane, e.getPoruka());
@@ -338,6 +375,43 @@ public class Izbornik extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(rootPane, e.getPoruka());
         }
     }//GEN-LAST:event_lstSviArtikliValueChanged
+
+    private void btnDodaj1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDodaj1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnDodaj1ActionPerformed
+
+    private void cmbKupciActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbKupciActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmbKupciActionPerformed
+
+    private void btnDodajUNarudzbuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDodajUNarudzbuActionPerformed
+        DefaultListModel<Clan> m;
+        try {
+            m=(DefaultListModel<Clan>) lstTrenutniArtikli.getModel();
+            m.get(0).toString();
+        } catch (Exception e) {
+            m= new DefaultListModel<>();
+            lstTrenutniArtikli.setModel(m);
+        }
+        boolean postoji;
+       for(Artikl a : lstSviArtikli.getSelectedValuesList()){
+           postoji=false;
+//           for(int i=0;i<m.size();i++){
+//               if(a.getId().equals(m.get(i).getArtikl().getId())){
+//                   postoji=true;
+//                   break;
+//               }
+//           }
+           //if(!postoji){
+               Clan c = new Clan();
+               c.setNarudzba(lstNarudzbe.getSelectedValue());
+               c.setArtikl(a);
+               m.addElement(c);
+           //}
+       }
+        
+        lstTrenutniArtikli.repaint();
+    }//GEN-LAST:event_btnDodajUNarudzbuActionPerformed
 
     /**
      * @param args the command line arguments
@@ -376,7 +450,10 @@ public class Izbornik extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDodaj;
-    private javax.swing.JButton btnPostaviKupca;
+    private javax.swing.JButton btnDodaj1;
+    private javax.swing.JButton btnDodajUNarudzbu;
+    private javax.swing.JButton btnUkloniIzNarudzbe;
+    private javax.swing.JComboBox<Kupac> cmbKupci;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
@@ -399,8 +476,8 @@ public class Izbornik extends javax.swing.JFrame {
     private javax.swing.JLabel lblUkCijena;
     private javax.swing.JLabel lblVrijeme;
     private javax.swing.JList<Narudzba> lstNarudzbe;
-    private javax.swing.JList<String> lstSviArtikli;
-    private javax.swing.JList<String> lstTrenutniArtikli;
+    private javax.swing.JList<Artikl> lstSviArtikli;
+    private javax.swing.JList<Clan> lstTrenutniArtikli;
     // End of variables declaration//GEN-END:variables
 
     private class Vrijeme extends Thread{
@@ -423,15 +500,26 @@ public class Izbornik extends javax.swing.JFrame {
     
     private class NarudzbaPane{
         
-        private void ucitajNarudzba() {
+    private void ucitajKupce() {
+         
+         DefaultComboBoxModel<Kupac> m =
+                 new DefaultComboBoxModel<>();
+         Kupac k=new Kupac();
+         k.setId(-1L);
+         k.setIme("Odaberite kupca");
+         m.addElement(k);
+         System.out.println("Kupci u CMB");
+         new ObradaKupac().getPodaci().forEach(sm->{
+              m.addElement(sm);
+              System.out.println(sm.getIme()+" "+sm.getPrezime()+ ": " + 
+                      sm.hashCode());
+         });
+       
+        
 
-        DefaultListModel<Narudzba> m = new DefaultListModel<>();
-        m.addAll(obradaN.getPodaci());
-        lstNarudzbe.setModel(m);
-
-        DefaultListModel<Artikl> a = new javax.swing.DefaultListModel<>();
-        a.addAll(obradaN.getArtikli());
-        lstArtikli.setModel(a);
+        cmbKupci.setModel(m);
+        cmbKupci.setSelectedIndex(0);
+        
     }
 
     private void postaviVrijednostiNaEntitet() {
@@ -451,7 +539,7 @@ public class Izbornik extends javax.swing.JFrame {
 //        entitet.setUkupnaCijena(lstArtikli.getModel().);
         
         
-        entitet.setBrojRacuna(brojRacuna++);
+        entitet.setBrojRacuna(obradaN.getPodaci());
        
         //entitet.setZaposlenik();
 
@@ -461,7 +549,7 @@ public class Izbornik extends javax.swing.JFrame {
         lblTrenutniDatum.setText("");
         lblTrenutniZaposlenik.setText("");
         lblVrijeme.setText("");
-        lstArtikli.removeAll();
+        lstTrenutniArtikli.removeAll();
 
     }
         

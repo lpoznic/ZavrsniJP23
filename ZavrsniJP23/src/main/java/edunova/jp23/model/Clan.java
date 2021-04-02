@@ -35,4 +35,9 @@ public class Clan extends Entitet{
         this.narudzba = narudzba;
     }
     
+    @Override
+    public String toString() {
+       return getArtikl().toString();
+    }
+    
 }
