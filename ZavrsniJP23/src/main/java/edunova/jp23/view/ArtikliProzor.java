@@ -41,11 +41,8 @@ public class ArtikliProzor extends javax.swing.JFrame {
 
         jScrollPane2 = new javax.swing.JScrollPane();
         jList2 = new javax.swing.JList<>();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        lstTrenutniArtikli = new javax.swing.JList<>();
         jScrollPane3 = new javax.swing.JScrollPane();
         lstSviArtikli = new javax.swing.JList<>();
-        jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         txtOpis = new javax.swing.JTextField();
         txtNaziv = new javax.swing.JTextField();
@@ -69,26 +66,12 @@ public class ArtikliProzor extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        lstTrenutniArtikli.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
-        lstTrenutniArtikli.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
-            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
-                lstTrenutniArtikliValueChanged(evt);
-            }
-        });
-        jScrollPane1.setViewportView(lstTrenutniArtikli);
-
         lstSviArtikli.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
             public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
                 lstSviArtikliValueChanged(evt);
             }
         });
         jScrollPane3.setViewportView(lstSviArtikli);
-
-        jLabel1.setText("Trenutni artikli");
 
         jLabel2.setText("Svi artikli");
 
@@ -149,16 +132,12 @@ public class ArtikliProzor extends javax.swing.JFrame {
                             .addComponent(jButton1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jButton3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 76, Short.MAX_VALUE))
                         .addGap(18, 18, 18)
-                        .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 77, Short.MAX_VALUE)))
-                .addGap(18, 18, 18)
+                        .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGap(134, 134, 134)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(44, 44, 44)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
+                .addGap(36, 36, 36))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -191,13 +170,9 @@ public class ArtikliProzor extends javax.swing.JFrame {
                             .addComponent(jButton2))
                         .addGap(0, 5, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel2))
+                        .addComponent(jLabel2)
                         .addGap(15, 15, 15)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane3)
-                            .addComponent(jScrollPane1))))
+                        .addComponent(jScrollPane3)))
                 .addContainerGap())
         );
 
@@ -223,27 +198,10 @@ public class ArtikliProzor extends javax.swing.JFrame {
             obrada.update();
             obrada.setEntitet(new Artikl());
             pocisti();
-            ucitajSveA();
         } catch (EdunovaException e) {
             JOptionPane.showMessageDialog(rootPane, e.getPoruka());
         }
     }//GEN-LAST:event_lstSviArtikliValueChanged
-
-    private void lstTrenutniArtikliValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_lstTrenutniArtikliValueChanged
-        if (obrada.getEntitet().getId() == null) {
-            JOptionPane.showMessageDialog(rootPane, "Prvo odaberite stavku");
-            return;
-        }
-        postaviVrijednostiNaEntitet();
-
-        try {
-            obrada.update();
-            obrada.setEntitet(new Artikl());
-            ucitajTrenutneA();
-        } catch (EdunovaException e) {
-            JOptionPane.showMessageDialog(rootPane, e.getPoruka());
-        }
-    }//GEN-LAST:event_lstTrenutniArtikliValueChanged
 
     private void btnDobavljacInfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDobavljacInfoActionPerformed
         new DobavljacProzor().setVisible(true);
@@ -289,19 +247,16 @@ public class ArtikliProzor extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JList<String> jList2;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JLabel lblTrenutniDobavljac;
     private javax.swing.JList<String> lstSviArtikli;
-    private javax.swing.JList<String> lstTrenutniArtikli;
     private javax.swing.JTextField txtCijena;
     private javax.swing.JTextField txtNaziv;
     private javax.swing.JTextField txtOpis;

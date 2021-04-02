@@ -54,6 +54,13 @@ public class Artikl extends Entitet{
     public void setDobavljac(Dobavljac dobavljac) {
         this.dobavljac = dobavljac;
     }
+
+    @Override
+    public String toString() {
+        return getNaziv() + " " + getCijena();
+    }
+    
+    
     
     
     

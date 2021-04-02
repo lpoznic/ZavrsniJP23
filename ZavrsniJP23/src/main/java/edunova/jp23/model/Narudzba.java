@@ -11,6 +11,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import edunova.jp23.model.Artikl;
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
@@ -68,7 +69,11 @@ public class Narudzba extends Entitet{
     }
 
     public void setUkupnaCijena(BigDecimal ukupnaCijena) {
-        this.ukupnaCijena = ukupnaCijena;
+        for(Clan clan : artikli){
+        
+            ukupnaCijena.add(clan.getArtikl().getCijena());
+        
+        }
     }
     private BigDecimal ukupnaCijena;
     
@@ -80,7 +85,7 @@ public class Narudzba extends Entitet{
         return artikli;
     }
 
-    public void setPolaznici(List<Clan> artikli) {
+    public void setArtikli(List<Clan> artikli) {
         this.artikli = artikli;
     }
     
@@ -92,7 +97,7 @@ public class Narudzba extends Entitet{
         if(d == null || d.toString().isEmpty()){
             return "[Datum nije definiran]";
         }
-        return df.format(d) + " " + getId();
+        return getId() + " " +df.format(d);
     }
     
 }
