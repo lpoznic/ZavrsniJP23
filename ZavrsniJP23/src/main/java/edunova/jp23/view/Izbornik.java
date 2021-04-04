@@ -33,7 +33,6 @@ import javax.swing.JOptionPane;
  */
 public class Izbornik extends javax.swing.JFrame {
 
-    int brojRacuna = 0;
     private ObradaNarudzba obradaN;
     private ObradaOperater obradaO;
     private NarudzbaPane np;
@@ -46,7 +45,10 @@ public class Izbornik extends javax.swing.JFrame {
         setTitle(Aplikacija.NASLOV_APP + " " + 
                 Aplikacija.operater.getImePrezime());
         new Vrijeme().start();
-        lblBrojRacuna.setText("Broj računa: "+ brojRacuna);
+        
+        obradaN=new ObradaNarudzba();
+        obradaO=new ObradaOperater();
+        
     }
 
     /**
