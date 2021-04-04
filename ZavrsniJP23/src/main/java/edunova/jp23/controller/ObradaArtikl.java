@@ -20,6 +20,16 @@ public class ObradaArtikl extends Obrada<Artikl>{
     public List<Artikl> getPodaci() {
         return session.createQuery("from Artikl").list();
     }
+    
+    public List<Artikl> getPodaci(String uvjet) {
+        return session.createQuery("from Artikl a "
+                + " where concat(a.naziv) "
+                + " like :uvjet order by a.naziv")
+                .setParameter("uvjet", "%" + uvjet + "%")
+                
+                .setMaxResults(20)
+                .list();
+    }
 
     @Override
     protected void kontrolaCreate() throws EdunovaException {

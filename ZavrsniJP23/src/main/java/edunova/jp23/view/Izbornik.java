@@ -6,6 +6,7 @@
 package edunova.jp23.view;
 
 import edunova.jp23.controller.ObradaArtikl;
+import edunova.jp23.controller.ObradaClan;
 import edunova.jp23.controller.ObradaDobavljac;
 import edunova.jp23.controller.ObradaKupac;
 import edunova.jp23.controller.ObradaNarudzba;
@@ -35,8 +36,10 @@ public class Izbornik extends javax.swing.JFrame {
 
     private ObradaNarudzba obradaN;
     private ObradaOperater obradaO;
+    private ObradaClan obradaC;
     private NarudzbaPane np;
     private KupacProzor prozor;
+    private ObradaArtikl obradaA;
     /**
      * Creates new form Izbornik
      */
@@ -48,6 +51,9 @@ public class Izbornik extends javax.swing.JFrame {
         
         obradaN=new ObradaNarudzba();
         obradaO=new ObradaOperater();
+        obradaC=new ObradaClan();
+        obradaA=new ObradaArtikl();
+        ucitajKupce();
         
     }
 
@@ -73,7 +79,7 @@ public class Izbornik extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         btnDodaj = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btnUkloni = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         lblTrenutniDatum = new javax.swing.JLabel();
         lblTrenutniZaposlenik = new javax.swing.JLabel();
@@ -89,6 +95,8 @@ public class Izbornik extends javax.swing.JFrame {
         btnDodaj1 = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         lstTrenutniArtikli = new javax.swing.JList<>();
+        txtPretraga = new javax.swing.JTextField();
+        btnPretraga = new javax.swing.JButton();
         paneArtikl = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -133,10 +141,10 @@ public class Izbornik extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setText("Ukloni");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnUkloni.setText("Ukloni");
+        btnUkloni.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btnUkloniActionPerformed(evt);
             }
         });
 
@@ -159,6 +167,11 @@ public class Izbornik extends javax.swing.JFrame {
         });
 
         btnUkloniIzNarudzbe.setText("-");
+        btnUkloniIzNarudzbe.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUkloniIzNarudzbeActionPerformed(evt);
+            }
+        });
 
         cmbKupci.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -174,6 +187,19 @@ public class Izbornik extends javax.swing.JFrame {
         });
 
         jScrollPane2.setViewportView(lstTrenutniArtikli);
+
+        txtPretraga.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtPretragaActionPerformed(evt);
+            }
+        });
+
+        btnPretraga.setText("Traži");
+        btnPretraga.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPretragaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -211,7 +237,7 @@ public class Izbornik extends javax.swing.JFrame {
                                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnUkloni, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(23, 23, 23))))
                     .addComponent(btnDodaj1, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cmbKupci, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -220,10 +246,18 @@ public class Izbornik extends javax.swing.JFrame {
                     .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 135, Short.MAX_VALUE)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
-                .addComponent(btnDodajUNarudzbu, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(32, 32, 32)
-                .addComponent(btnUkloniIzNarudzbe, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(btnDodajUNarudzbu, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(32, 32, 32)
+                                .addComponent(btnUkloniIzNarudzbe, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtPretraga))
+                        .addGap(18, 18, 18))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(btnPretraga, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(31, 31, 31)))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -263,20 +297,22 @@ public class Izbornik extends javax.swing.JFrame {
                                 .addComponent(btnDodaj1)
                                 .addGap(30, 30, 30)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jButton2)
+                                    .addComponent(btnUkloni)
                                     .addComponent(btnDodaj)))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(txtPretraga, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(btnPretraga)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                             .addComponent(btnDodajUNarudzbu)
                                             .addComponent(btnUkloniIzNarudzbe))
                                         .addGap(170, 170, 170))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jScrollPane2))))
+                                    .addComponent(jScrollPane2)))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(3, 3, 3)
                                 .addComponent(jLabel8)
@@ -365,9 +401,9 @@ public class Izbornik extends javax.swing.JFrame {
 
     }//GEN-LAST:event_lstSviArtikliValueChanged
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void btnUkloniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUkloniActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_btnUkloniActionPerformed
 
     private void btnDodajActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDodajActionPerformed
         // TODO add your handling code here:
@@ -402,6 +438,37 @@ public class Izbornik extends javax.swing.JFrame {
         m.addAll(g.getArtikli());
         lstTrenutniArtikli.setModel(m);
     }//GEN-LAST:event_lstNarudzbeValueChanged
+
+    private void txtPretragaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPretragaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtPretragaActionPerformed
+
+    private void btnPretragaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPretragaActionPerformed
+        DefaultListModel<Artikl> m = new DefaultListModel<>();
+        m.addAll(obradaA.getPodaci(txtPretraga.getText()));
+        lstSviArtikli.setModel(m);
+    }//GEN-LAST:event_btnPretragaActionPerformed
+
+    private void btnUkloniIzNarudzbeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUkloniIzNarudzbeActionPerformed
+       DefaultListModel<Clan> m;
+        try {
+            m=(DefaultListModel<Clan>) lstTrenutniArtikli.getModel();
+            m.get(0).toString();
+        } catch (Exception e) {
+           return;
+        }
+        
+        for(Clan p : lstTrenutniArtikli.getSelectedValuesList()){
+          
+           for(int i=0;i<m.size();i++){
+               if(p.getId().equals(m.get(i).getId())){
+                   m.removeElementAt(i);
+                   break;
+               }
+           }
+          
+       }
+    }//GEN-LAST:event_btnUkloniIzNarudzbeActionPerformed
 
     /**
      * @param args the command line arguments
@@ -442,10 +509,11 @@ public class Izbornik extends javax.swing.JFrame {
     private javax.swing.JButton btnDodaj;
     private javax.swing.JButton btnDodaj1;
     private javax.swing.JButton btnDodajUNarudzbu;
+    private javax.swing.JButton btnPretraga;
+    private javax.swing.JButton btnUkloni;
     private javax.swing.JButton btnUkloniIzNarudzbe;
     private javax.swing.JComboBox<Kupac> cmbKupci;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -469,6 +537,7 @@ public class Izbornik extends javax.swing.JFrame {
     private javax.swing.JList<Artikl> lstSviArtikli;
     private javax.swing.JList<Clan> lstTrenutniArtikli;
     private javax.swing.JPanel paneArtikl;
+    private javax.swing.JTextField txtPretraga;
     // End of variables declaration//GEN-END:variables
 
     private class Vrijeme extends Thread{
@@ -489,8 +558,6 @@ public class Izbornik extends javax.swing.JFrame {
         
     }
     
-    private class NarudzbaPane{
-        
     private void ucitajKupce() {
          
          DefaultComboBoxModel<Kupac> m =
@@ -542,6 +609,10 @@ public class Izbornik extends javax.swing.JFrame {
         lstTrenutniArtikli.removeAll();
 
     }
+    
+    private class NarudzbaPane{
+        
+    
 
         private BigDecimal postaviUkupnuCijenu() {
             throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
