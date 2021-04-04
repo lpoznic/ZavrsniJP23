@@ -5,6 +5,7 @@
  */
 package edunova.jp23.model;
 
+import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
@@ -12,10 +13,12 @@ import javax.persistence.OneToMany;
  *
  * @author Pozna
  */
+@Entity
 public class Clan extends Entitet{
     
     @ManyToOne
     private Artikl artikl;
+    
     @ManyToOne
     private Narudzba narudzba;
 

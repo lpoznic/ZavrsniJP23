@@ -325,7 +325,6 @@ public class ZaposlenikProzor extends javax.swing.JFrame {
         } catch (Exception e) {
             entitet.setOib("");
         }
-        entitet.setLozinka(BCrypt.hashpw("edunova", BCrypt.gensalt()));
 
     }
 

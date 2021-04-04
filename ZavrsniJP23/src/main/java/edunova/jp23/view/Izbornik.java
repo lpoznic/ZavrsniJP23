@@ -516,7 +516,7 @@ public class Izbornik extends javax.swing.JFrame {
        g.setKupac((Kupac)cmbKupci.getSelectedItem());
        g.setUkupnaCijena(obradaN.getEntitet().getUkupnaCijena());
        g.setDatum(new Date());
-       g.setBrojRacuna(obradaN.getEntitet().getBrojRacuna());
+       g.setBrojRacuna(obradaN.getEntitet().getId());
        
        
        DefaultListModel<Clan> m;

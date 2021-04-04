@@ -14,6 +14,7 @@ import java.util.List;
 import edunova.jp23.model.Artikl;
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.swing.JOptionPane;
@@ -28,9 +29,10 @@ public class Narudzba extends Entitet{
     private Date datum;
     @OneToOne
     private Zaposlenik zaposlenik;
-    @OneToOne
+    
+    @ManyToOne
     private Kupac kupac;
-    private long brojRacuna = getId();
+    private long brojRacuna;
 
     public Date getDatum() {
         return datum;
@@ -57,15 +59,15 @@ public class Narudzba extends Entitet{
     }
 
     public long getBrojRacuna() {
-        return brojRacuna;
-    }
-
-    public void setBrojRacuna(long brojRacuna) {
-        this.brojRacuna = brojRacuna;
+        return getId();
     }
 
     public BigDecimal getUkupnaCijena() {
         return ukupnaCijena;
+    }
+
+    public void setBrojRacuna(long brojRacuna) {
+        this.brojRacuna = brojRacuna;
     }
 
     public void setUkupnaCijena(BigDecimal ukupnaCijena) {
@@ -78,7 +80,7 @@ public class Narudzba extends Entitet{
     private BigDecimal ukupnaCijena;
     
     
-    @OneToMany(mappedBy = "Artikli")
+    @OneToMany(mappedBy = "artikl")
     private List<Clan> artikli = new ArrayList<>();
 
     public List<Clan> getArtikli() {
