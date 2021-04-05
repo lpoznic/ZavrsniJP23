@@ -126,6 +126,8 @@
                           </Group>
                           <Component id="btnDodaj1" min="-2" pref="57" max="-2" attributes="0"/>
                           <Component id="cmbKupci" alignment="0" min="-2" pref="175" max="-2" attributes="0"/>
+                          <Component id="lblDatum" alignment="0" min="-2" pref="179" max="-2" attributes="0"/>
+                          <Component id="jLabel7" min="-2" pref="41" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -174,14 +176,18 @@
                                       <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="3" attributes="0">
                                           <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="lblUkCijena" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="lblUkCijena" alignment="3" min="-2" pref="16" max="-2" attributes="0"/>
                                       </Group>
-                                      <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="3" attributes="0">
                                           <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
                                           <Component id="lblTrenutniDatum" alignment="3" min="-2" max="-2" attributes="0"/>
                                       </Group>
-                                      <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
+                                      <Component id="lblDatum" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="3" attributes="0">
                                           <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
                                           <Component id="lblTrenutniZaposlenik" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -408,6 +414,16 @@
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnPretragaActionPerformed"/>
               </Events>
+            </Component>
+            <Component class="javax.swing.JLabel" name="lblDatum">
+              <Properties>
+                <Property name="text" type="java.lang.String" value=" "/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLabel7">
+              <Properties>
+                <Property name="text" type="java.lang.String" value=" "/>
+              </Properties>
             </Component>
           </SubComponents>
         </Container>

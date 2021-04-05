@@ -40,6 +40,7 @@ public class Izbornik extends javax.swing.JFrame {
     private NarudzbaPane np;
     private KupacProzor prozor;
     private ObradaArtikl obradaA;
+    BigDecimal ukupnaCijena = BigDecimal.ZERO;
     /**
      * Creates new form Izbornik
      */
@@ -48,6 +49,7 @@ public class Izbornik extends javax.swing.JFrame {
         setTitle(Aplikacija.NASLOV_APP + " " + 
                 Aplikacija.operater.getImePrezime());
         new Vrijeme().start();
+        
         
         obradaN=new ObradaNarudzba();
         obradaO=new ObradaOperater();
@@ -97,6 +99,8 @@ public class Izbornik extends javax.swing.JFrame {
         lstTrenutniArtikli = new javax.swing.JList<>();
         txtPretraga = new javax.swing.JTextField();
         btnPretraga = new javax.swing.JButton();
+        lblDatum = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
         paneArtikl = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -201,6 +205,10 @@ public class Izbornik extends javax.swing.JFrame {
             }
         });
 
+        lblDatum.setText(" ");
+
+        jLabel7.setText(" ");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -240,7 +248,9 @@ public class Izbornik extends javax.swing.JFrame {
                                 .addComponent(btnUkloni, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(23, 23, 23))))
                     .addComponent(btnDodaj1, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cmbKupci, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cmbKupci, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblDatum, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 135, Short.MAX_VALUE)
@@ -278,12 +288,16 @@ public class Izbornik extends javax.swing.JFrame {
                                 .addGap(36, 36, 36)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel3)
-                                    .addComponent(lblUkCijena))
-                                .addGap(36, 36, 36)
+                                    .addComponent(lblUkCijena, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabel7)
+                                .addGap(8, 8, 8)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel5)
                                     .addComponent(lblTrenutniDatum))
-                                .addGap(32, 32, 32)
+                                .addGap(10, 10, 10)
+                                .addComponent(lblDatum)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel6)
                                     .addComponent(lblTrenutniZaposlenik))
@@ -380,19 +394,20 @@ public class Izbornik extends javax.swing.JFrame {
         boolean postoji;
         for(Artikl a : lstSviArtikli.getSelectedValuesList()){
             postoji=false;
-            //           for(int i=0;i<m.size();i++){
-                //               if(a.getId().equals(m.get(i).getArtikl().getId())){
-                    //                   postoji=true;
-                    //                   break;
-                    //               }
-                //           }
-            //if(!postoji){
                 Clan c = new Clan();
                 c.setNarudzba(lstNarudzbe.getSelectedValue());
                 c.setArtikl(a);
                 m.addElement(c);
-                //}
+    
         }
+        
+        for(Clan c:lstTrenutniArtikli.getSelectedValuesList()){
+            ukupnaCijena = ukupnaCijena.add(c.getArtikl().getCijena());
+        }
+        
+        lblUkCijena.setText(ukupnaCijena.toString());
+        
+        
 
         lstTrenutniArtikli.repaint();
     }//GEN-LAST:event_btnDodajUNarudzbuActionPerformed
@@ -406,7 +421,16 @@ public class Izbornik extends javax.swing.JFrame {
     }//GEN-LAST:event_btnUkloniActionPerformed
 
     private void btnDodajActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDodajActionPerformed
-        // TODO add your handling code here:
+        obradaN.setEntitet(new Narudzba());
+        postaviVrijednostiNaEntitet();
+
+        try {
+            obradaN.create();
+            pocisti();
+            ucitajEntitete(); //nije optimizirano. Bolje bi bilo samo taj novi dodati u listu
+        } catch (EdunovaException ex) {
+            JOptionPane.showMessageDialog(rootPane, ex.getPoruka());
+        }
     }//GEN-LAST:event_btnDodajActionPerformed
 
     private void lstNarudzbeValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_lstNarudzbeValueChanged
@@ -421,13 +445,9 @@ public class Izbornik extends javax.swing.JFrame {
         obradaN.setEntitet(lstNarudzbe.getSelectedValue());
 
         var g= obradaN.getEntitet();
-        // nema potrebe za sljedećom linijom, piše se kao iznad
-        //Grupa g = obrada.getEntitet();
 
         lblBrojRacuna.setText("Broj računa: "+ g.getBrojRacuna());
 
-        //Ukoliko nemate dvije identične instance
-        // ovo neće proći
         cmbKupci.setSelectedItem(g.getKupac());
 
         lblTrenutniDatum.setText("Datum: "+g.getDatum());
@@ -458,16 +478,7 @@ public class Izbornik extends javax.swing.JFrame {
            return;
         }
         
-        for(Clan p : lstTrenutniArtikli.getSelectedValuesList()){
-          
-           for(int i=0;i<m.size();i++){
-               if(p.getId().equals(m.get(i).getId())){
-                   m.removeElementAt(i);
-                   break;
-               }
-           }
-          
-       }
+         m.removeElementAt(lstTrenutniArtikli.getSelectedIndex());
     }//GEN-LAST:event_btnUkloniIzNarudzbeActionPerformed
 
     /**
@@ -520,6 +531,7 @@ public class Izbornik extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
@@ -529,6 +541,7 @@ public class Izbornik extends javax.swing.JFrame {
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JToolBar jToolBar1;
     private javax.swing.JLabel lblBrojRacuna;
+    private javax.swing.JLabel lblDatum;
     private javax.swing.JLabel lblTrenutniDatum;
     private javax.swing.JLabel lblTrenutniZaposlenik;
     private javax.swing.JLabel lblUkCijena;
