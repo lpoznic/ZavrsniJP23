@@ -12,7 +12,7 @@ import javax.persistence.Entity;
  * @author Pozna
  */
 @Entity
-public class Zaposlenik extends Osoba{
+public class Zaposlenik extends Operater{
     
     private String iban;
 

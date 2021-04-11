@@ -33,6 +33,7 @@ public class Narudzba extends Entitet{
     @ManyToOne
     private Kupac kupac;
     private long brojRacuna;
+    private BigDecimal ukupnaCijena;
 
     public Date getDatum() {
         return datum;
@@ -71,13 +72,8 @@ public class Narudzba extends Entitet{
     }
 
     public void setUkupnaCijena(BigDecimal ukupnaCijena) {
-        for(Clan clan : artikli){
-        
-            ukupnaCijena.add(clan.getArtikl().getCijena());
-        
-        }
+       this.ukupnaCijena=ukupnaCijena;
     }
-    private BigDecimal ukupnaCijena;
     
     
     @OneToMany(mappedBy = "artikl")

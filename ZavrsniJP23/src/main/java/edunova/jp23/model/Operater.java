@@ -19,6 +19,26 @@ public class Operater extends Osoba{
     @NotNull(message = "lozinka ne prazna")
     @NotEmpty(message = "lozinka ne prazna")
     private String lozinka;
+    private String iban;
+
+    public String getIban() {
+        return iban;
+    }
+
+    public void setIban(String iban) {
+        this.iban = iban;
+    }
+    
+    @Override
+    public String toString() {
+        if(getIme() == null || getIme().isEmpty()){
+            return "[Ime nije definirano]";
+        }
+        if(getPrezime() == null || getPrezime().isEmpty()){
+            return "[Prezime nije definirano]";
+        }
+        return getIme() + " " + getPrezime();
+    }
 
     public String getLozinka() {
         return lozinka;
