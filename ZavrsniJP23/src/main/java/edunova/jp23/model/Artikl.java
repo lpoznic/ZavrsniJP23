@@ -18,7 +18,6 @@ import javax.persistence.OneToOne;
 public class Artikl extends Entitet{
     
     private String naziv;
-    private String opis;
     private BigDecimal cijena;
     @ManyToOne
     private Dobavljac dobavljac;
@@ -29,14 +28,6 @@ public class Artikl extends Entitet{
 
     public void setNaziv(String naziv) {
         this.naziv = naziv;
-    }
-
-    public String getOpis() {
-        return opis;
-    }
-
-    public void setOpis(String opis) {
-        this.opis = opis;
     }
 
     public BigDecimal getCijena() {

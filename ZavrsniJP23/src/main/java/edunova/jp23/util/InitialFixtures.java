@@ -44,7 +44,6 @@ public class InitialFixtures {
         artikl.setCijena(BigDecimal.TEN);
         artikl.setDobavljac(dobavljac);
         artikl.setNaziv("Cigla");
-        artikl.setOpis("Cigla");
         s.save(artikl);
         
         

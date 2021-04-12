@@ -111,6 +111,15 @@ public class Izbornik extends javax.swing.JFrame {
         jScrollPane6 = new javax.swing.JScrollPane();
         lstArtikli = new javax.swing.JList<>();
         jLabel21 = new javax.swing.JLabel();
+        btnDodajArtikl = new javax.swing.JButton();
+        btnUrediArtikl = new javax.swing.JButton();
+        btnUkloniArtikl = new javax.swing.JButton();
+        txtNazivArtikla = new javax.swing.JTextField();
+        txtCijenaArtikla = new javax.swing.JTextField();
+        jLabel22 = new javax.swing.JLabel();
+        jLabel23 = new javax.swing.JLabel();
+        cmbDobavljaci = new javax.swing.JComboBox<>();
+        jLabel24 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel10 = new javax.swing.JLabel();
         txtAdresaDobavljaca = new javax.swing.JTextField();
@@ -386,6 +395,24 @@ public class Izbornik extends javax.swing.JFrame {
 
         jLabel21.setText("Artikli");
 
+        btnDodajArtikl.setText("Dodaj");
+
+        btnUrediArtikl.setText("Uredi");
+
+        btnUkloniArtikl.setText("Ukloni");
+
+        txtNazivArtikla.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNazivArtiklaActionPerformed(evt);
+            }
+        });
+
+        jLabel22.setText("Cijena");
+
+        jLabel23.setText("Naziv");
+
+        jLabel24.setText("Dobavljač");
+
         javax.swing.GroupLayout paneArtiklLayout = new javax.swing.GroupLayout(paneArtikl);
         paneArtikl.setLayout(paneArtiklLayout);
         paneArtiklLayout.setHorizontalGroup(
@@ -393,21 +420,60 @@ public class Izbornik extends javax.swing.JFrame {
             .addGroup(paneArtiklLayout.createSequentialGroup()
                 .addGroup(paneArtiklLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(paneArtiklLayout.createSequentialGroup()
-                        .addGap(48, 48, 48)
-                        .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(paneArtiklLayout.createSequentialGroup()
                         .addGap(80, 80, 80)
-                        .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(587, Short.MAX_VALUE))
+                        .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(paneArtiklLayout.createSequentialGroup()
+                        .addGap(48, 48, 48)
+                        .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(40, 40, 40)
+                        .addGroup(paneArtiklLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(paneArtiklLayout.createSequentialGroup()
+                                .addComponent(btnDodajArtikl, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(29, 29, 29)
+                                .addComponent(btnUrediArtikl, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(103, 103, 103)
+                                .addComponent(btnUkloniArtikl, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtCijenaArtikla, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(paneArtiklLayout.createSequentialGroup()
+                                .addGroup(paneArtiklLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtNazivArtikla, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel23, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(43, 43, 43)
+                                .addGroup(paneArtiklLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(cmbDobavljaci, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabel24, javax.swing.GroupLayout.DEFAULT_SIZE, 115, Short.MAX_VALUE))))))
+                .addGap(163, 208, Short.MAX_VALUE))
         );
         paneArtiklLayout.setVerticalGroup(
             paneArtiklLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(paneArtiklLayout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addComponent(jLabel21)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(48, Short.MAX_VALUE))
+                .addGroup(paneArtiklLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(paneArtiklLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(48, Short.MAX_VALUE))
+                    .addGroup(paneArtiklLayout.createSequentialGroup()
+                        .addGap(4, 4, 4)
+                        .addGroup(paneArtiklLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel23)
+                            .addComponent(jLabel24))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(paneArtiklLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtNazivArtikla, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cmbDobavljaci, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel22)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtCijenaArtikla, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(paneArtiklLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnDodajArtikl)
+                            .addComponent(btnUrediArtikl)
+                            .addComponent(btnUkloniArtikl))
+                        .addGap(48, 48, 48))))
         );
 
         panelZaposlenik.addTab("Artikli", paneArtikl);
@@ -913,6 +979,10 @@ public class Izbornik extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_pwdZaporkaZaposlenikaActionPerformed
 
+    private void txtNazivArtiklaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNazivArtiklaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNazivArtiklaActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -951,16 +1021,20 @@ public class Izbornik extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDodaj;
     private javax.swing.JButton btnDodaj1;
+    private javax.swing.JButton btnDodajArtikl;
     private javax.swing.JButton btnDodajDobavljaca;
     private javax.swing.JButton btnDodajUNarudzbu;
     private javax.swing.JButton btnDodajZaposlenik;
     private javax.swing.JButton btnPretraga;
     private javax.swing.JButton btnUkloni;
+    private javax.swing.JButton btnUkloniArtikl;
     private javax.swing.JButton btnUkloniDobavljaca;
     private javax.swing.JButton btnUkloniIzNarudzbe;
     private javax.swing.JButton btnUkloniZaposlenik;
+    private javax.swing.JButton btnUrediArtikl;
     private javax.swing.JButton btnUrediDobavljaca;
     private javax.swing.JButton btnUrediZaposlenik;
+    private javax.swing.JComboBox<Dobavljac> cmbDobavljaci;
     private javax.swing.JComboBox<Kupac> cmbKupci;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
@@ -977,6 +1051,9 @@ public class Izbornik extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
+    private javax.swing.JLabel jLabel23;
+    private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -1011,10 +1088,12 @@ public class Izbornik extends javax.swing.JFrame {
     private javax.swing.JTabbedPane panelZaposlenik;
     private javax.swing.JPasswordField pwdZaporkaZaposlenika;
     private javax.swing.JTextField txtAdresaDobavljaca;
+    private javax.swing.JTextField txtCijenaArtikla;
     private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtIban;
     private javax.swing.JTextField txtIme;
     private javax.swing.JTextField txtImeVlasnika;
+    private javax.swing.JTextField txtNazivArtikla;
     private javax.swing.JTextField txtNazivDobavljaca;
     private javax.swing.JTextField txtOib;
     private javax.swing.JTextField txtPretraga;
