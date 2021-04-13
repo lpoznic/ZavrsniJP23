@@ -28,7 +28,7 @@ public class Narudzba extends Entitet{
     
     private Date datum;
     @OneToOne
-    private Zaposlenik zaposlenik;
+    private Operater operater;
     
     @ManyToOne
     private Kupac kupac;
@@ -43,12 +43,12 @@ public class Narudzba extends Entitet{
         this.datum = datum;
     }
 
-    public Zaposlenik getZaposlenik() {
-        return zaposlenik;
+    public Operater getOperater() {
+        return operater;
     }
 
-    public void setZaposlenik(Zaposlenik zaposlenik) {
-        this.zaposlenik = zaposlenik;
+    public void setOperater(Operater operater) {
+        this.operater = operater;
     }
 
     public Kupac getKupac() {

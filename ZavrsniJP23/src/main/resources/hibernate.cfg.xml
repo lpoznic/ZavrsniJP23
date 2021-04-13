@@ -45,7 +45,6 @@
         <!-- Ovdje navodimo mapirane klase -->
         
         <mapping class="edunova.jp23.model.Kupac" />
-        <mapping class="edunova.jp23.model.Zaposlenik" />
         <mapping class="edunova.jp23.model.Dobavljac" />
         <mapping class="edunova.jp23.model.Artikl" />
         <mapping class="edunova.jp23.model.Clan" />
