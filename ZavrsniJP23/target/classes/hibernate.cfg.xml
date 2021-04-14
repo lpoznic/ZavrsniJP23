@@ -48,7 +48,7 @@
         <mapping class="edunova.jp23.model.Dobavljac" />
         <mapping class="edunova.jp23.model.Artikl" />
         <mapping class="edunova.jp23.model.Clan" />
-        <mapping class="edunova.jp23.model.Narudzba" />
         <mapping class="edunova.jp23.model.Operater" /> 
+        <mapping class="edunova.jp23.model.Narudzba" />
     </session-factory>
 </hibernate-configuration>

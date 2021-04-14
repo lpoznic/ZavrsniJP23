@@ -18,7 +18,6 @@ import edunova.jp23.model.Entitet;
 import edunova.jp23.model.Kupac;
 import edunova.jp23.model.Narudzba;
 import edunova.jp23.model.Operater;
-import edunova.jp23.model.Zaposlenik;
 import edunova.jp23.util.EdunovaException;
 import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
@@ -31,6 +30,7 @@ import java.util.Arrays;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
+import org.mindrot.jbcrypt.BCrypt;
 
 /**
  *
@@ -42,7 +42,6 @@ public class Izbornik extends javax.swing.JFrame {
     private ObradaOperater obradaO;
     private ObradaKupac obradaK;
     private ObradaClan obradaC;
-    private KupacProzor prozor;
     private ObradaArtikl obradaA;
     private ObradaDobavljac obradaD;
     /**
@@ -63,6 +62,11 @@ public class Izbornik extends javax.swing.JFrame {
         obradaK=new ObradaKupac();
         ucitajKupce();
         ucitajEntitete();
+        ucitajDobavljaceCmb();
+        ucitajA();
+        ucitajD();
+        ucitajK();
+        ucitajO();
         
     }
 
@@ -298,8 +302,8 @@ public class Izbornik extends javax.swing.JFrame {
             paneNarudzbaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(paneNarudzbaLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(27, 27, 27)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(paneNarudzbaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(paneNarudzbaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addGroup(paneNarudzbaLayout.createSequentialGroup()
@@ -796,6 +800,11 @@ public class Izbornik extends javax.swing.JFrame {
         jLabel30.setText("OIB");
 
         btnDodajKupca.setText("Dodaj");
+        btnDodajKupca.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDodajKupcaActionPerformed(evt);
+            }
+        });
 
         btnUrediKupca.setText("Uredi");
 
@@ -1023,7 +1032,7 @@ public class Izbornik extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(rootPane, "Prvo odaberite stavku");
             return;
         }
-        postaviVrijednostiNaEntitet();
+        postaviVrijednostiNaEntitetD();
 
         try {
             obradaD.update();
@@ -1036,7 +1045,7 @@ public class Izbornik extends javax.swing.JFrame {
 
     private void btnDodajDobavljacaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDodajDobavljacaActionPerformed
         obradaD.setEntitet(new Dobavljac());
-        postaviVrijednostiNaEntitet();
+        postaviVrijednostiNaEntitetD();
 
         try {
             obradaD.create();
@@ -1113,7 +1122,7 @@ public class Izbornik extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(rootPane, "Prvo odaberite stavku");
             return;
         }
-        postaviVrijednostiNaEntitet();
+        postaviVrijednostiNaEntitetO();
 
         try {
             obradaO.update();
@@ -1126,7 +1135,7 @@ public class Izbornik extends javax.swing.JFrame {
 
     private void btnDodajZaposlenikActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDodajZaposlenikActionPerformed
         obradaO.setEntitet(new Operater());
-        postaviVrijednostiNaEntitet();
+        postaviVrijednostiNaEntitetO();
 
         try {
             obradaO.create();
@@ -1224,6 +1233,19 @@ public class Izbornik extends javax.swing.JFrame {
     private void tabbedPaneFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_tabbedPaneFocusGained
         // TODO add your handling code here:
     }//GEN-LAST:event_tabbedPaneFocusGained
+
+    private void btnDodajKupcaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDodajKupcaActionPerformed
+        obradaK.setEntitet(new Kupac());
+        postaviVrijednostiNaEntitetK();
+
+        try {
+            obradaK.create();
+            pocistiK();
+            ucitajK();
+        } catch (EdunovaException ex) {
+            JOptionPane.showMessageDialog(rootPane, ex.getPoruka());
+        }
+    }//GEN-LAST:event_btnDodajKupcaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1396,25 +1418,24 @@ public class Izbornik extends javax.swing.JFrame {
     
     private void ucitajKupce() {
          
-         DefaultComboBoxModel<Kupac> m =
+        DefaultComboBoxModel<Kupac> m =
                  new DefaultComboBoxModel<>();
-         Kupac k=new Kupac();
-         k.setId(-1L);
-         k.setIme("Odaberite kupca");
-         m.addElement(k);
-         System.out.println("Kupci u CMB");
-         new ObradaKupac().getPodaci().forEach(sm->{
+        Kupac k=new Kupac();
+        k.setId(-1L);
+        k.setIme("Odaberite kupca");
+        m.addElement(k);
+        System.out.println("Kupci u CMB");
+        new ObradaKupac().getPodaci().forEach(sm->{
               m.addElement(sm);
               System.out.println(sm.getIme()+" "+sm.getPrezime()+ ": " + 
                       sm.hashCode());
          });
-       
-        
 
         cmbKupci.setModel(m);
         cmbKupci.setSelectedIndex(0);
         
     }
+    
 
     private void postaviVrijednostiNaEntitet() {
        var g = obradaN.getEntitet();
@@ -1443,11 +1464,6 @@ public class Izbornik extends javax.swing.JFrame {
     }
     
     
-    private BigDecimal postaviUkupnuCijenu(BigDecimal ukupnaCijena) {
-        
-        return ukupnaCijena;
-        }
-
     private void pocisti() {
         lblTrenutniDatum.setText("");
         lblTrenutniZaposlenik.setText("");
@@ -1494,6 +1510,12 @@ public class Izbornik extends javax.swing.JFrame {
         } catch (Exception e) {
             entitet.setOib("");
         }
+        String lozinka = new String(pwdZaporkaZaposlenika.getPassword());
+        try{
+            entitet.setLozinka(BCrypt.hashpw(lozinka, BCrypt.gensalt()));
+        }catch(Exception e){
+            entitet.setLozinka("");
+        }
 
     }
 
@@ -1510,18 +1532,16 @@ public class Izbornik extends javax.swing.JFrame {
     private void ucitajDobavljaceCmb(){
         DefaultComboBoxModel<Dobavljac> m =
                  new DefaultComboBoxModel<>();
-         Dobavljac d=new Dobavljac();
-         d.setId(-1L);
-         d.setNaziv("Odaberite dobavljača");
-         m.addElement(d);
-         System.out.println("Dobavljači u CMB");
-         new ObradaDobavljac().getPodaci().forEach(sm->{
+        Dobavljac d=new Dobavljac();
+        d.setId(-1L);
+        d.setNaziv("Odaberite kupca");
+        m.addElement(d);
+        System.out.println("Dobavljači u CMB");
+        new ObradaDobavljac().getPodaci().forEach(sm->{
               m.addElement(sm);
-              System.out.println(sm.getNaziv()+ ": " + 
+              System.out.println(sm.getNaziv()+" "+ 
                       sm.hashCode());
          });
-       
-        
 
         cmbDobavljaci.setModel(m);
         cmbDobavljaci.setSelectedIndex(0);
@@ -1572,6 +1592,14 @@ public class Izbornik extends javax.swing.JFrame {
         lstDobavljaci.setModel(m);
     }
     
+    private void postaviVrijednostiNaEntitetD(){
+        var entitet=obradaD.getEntitet();
+        
+        entitet.setNaziv(txtNazivDobavljaca.getText());
+        entitet.setAdresa(txtAdresaDobavljaca.getText());
+        entitet.setImeVlasnika(txtImeVlasnikaDobavljaca.getText());
+    }
+    
     //Kupci panel:
     private void pocistiK(){
         txtImeKupca.setText("");
@@ -1588,6 +1616,17 @@ public class Izbornik extends javax.swing.JFrame {
         m.addAll(obradaK.getPodaci());
 
         lstKupci.setModel(m);
+    }
+    
+    private void postaviVrijednostiNaEntitetK(){
+        var entitet=obradaK.getEntitet();
+        
+        entitet.setIme(txtImeKupca.getText());
+        entitet.setPrezime(txtPrezimeKupca.getText());
+        entitet.setAdresa(txtAdresaKupca.getText());
+        entitet.setEmail(txtEmailKupca.getText());
+        entitet.setOib(txtOibKupca.getText());
+        entitet.setEmail(txtEmailKupca.getText());
     }
     
         
