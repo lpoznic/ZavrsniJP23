@@ -41,6 +41,7 @@ public class ObradaNarudzba extends Obrada<Narudzba>{
     }
     
     private void kontrolaCijena() throws EdunovaException{
+        System.out.println(entitet.getUkupnaCijena());
         if(entitet.getUkupnaCijena().compareTo(BigDecimal.ZERO)==0 || entitet.getUkupnaCijena()==null){
             throw new EdunovaException("Cijena ne smije biti nula");
         }
