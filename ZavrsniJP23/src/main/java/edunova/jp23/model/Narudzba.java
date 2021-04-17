@@ -91,11 +91,11 @@ public class Narudzba extends Entitet{
     public String toString() {
         
         Date d = new Date();
-        SimpleDateFormat df = new SimpleDateFormat("dd. MMMM YYYY.");
+        SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
         if(d == null || d.toString().isEmpty()){
             return "[Datum nije definiran]";
         }
-        return getId() + " " +df.format(d)+ " "+ getOperater().getImePrezime();
+        return "["+getId()+"], " +df.format(d)+ ", "+ getOperater().getImePrezime();
     }
     
 }
