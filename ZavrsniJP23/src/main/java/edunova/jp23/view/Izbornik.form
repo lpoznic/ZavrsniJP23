@@ -1029,11 +1029,11 @@
                               </Group>
                           </Group>
                           <Group type="102" attributes="0">
-                              <Component id="btnDodajKupca" min="-2" pref="57" max="-2" attributes="0"/>
-                              <EmptySpace pref="70" max="32767" attributes="0"/>
-                              <Component id="btnUrediKupca" min="-2" pref="57" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="149" max="-2" attributes="0"/>
-                              <Component id="btnUkloniKupca" min="-2" pref="57" max="-2" attributes="0"/>
+                              <Component id="btnDodajKupca" min="-2" pref="70" max="-2" attributes="0"/>
+                              <EmptySpace pref="57" max="32767" attributes="0"/>
+                              <Component id="btnUrediKupca" min="-2" pref="70" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="123" max="-2" attributes="0"/>
+                              <Component id="btnUkloniKupca" min="-2" pref="70" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace pref="269" max="32767" attributes="0"/>

@@ -858,11 +858,11 @@ public class Izbornik extends javax.swing.JFrame {
                             .addComponent(txtAdresaKupca)
                             .addComponent(txtOibKupca)))
                     .addGroup(paneKupciLayout.createSequentialGroup()
-                        .addComponent(btnDodajKupca, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 70, Short.MAX_VALUE)
-                        .addComponent(btnUrediKupca, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(149, 149, 149)
-                        .addComponent(btnUkloniKupca, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btnDodajKupca, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 57, Short.MAX_VALUE)
+                        .addComponent(btnUrediKupca, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(123, 123, 123)
+                        .addComponent(btnUkloniKupca, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(269, Short.MAX_VALUE))
         );
         paneKupciLayout.setVerticalGroup(
@@ -1252,6 +1252,7 @@ public class Izbornik extends javax.swing.JFrame {
         DefaultListModel<Clan> m = new DefaultListModel<>();
         m.addAll(g.getArtikli());
         lstTrenutniArtikli.setModel(m);
+        
     }//GEN-LAST:event_lstNarudzbeValueChanged
 
     private void paneDobavljacComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_paneDobavljacComponentShown

@@ -6,8 +6,15 @@
 package edunova.jp23.view;
 
 import edunova.jp23.util.HibernateUtil;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 import javax.swing.JOptionPane;
 import org.hibernate.Session;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.UnsupportedAudioFileException;
 
 /**
  *
@@ -18,10 +25,20 @@ public class SplashScreen extends javax.swing.JFrame {
     /**
      * Creates new form SplashScreen
      */
-    public SplashScreen() {
+    public SplashScreen(){
         initComponents();
         Ucitanje load = new Ucitanje();
         load.start();
+        File startUp = new File("src\\audio\\SplashScreen.mp3");
+        try{
+        Clip clip = AudioSystem.getClip();
+        clip.open(AudioSystem.getAudioInputStream(startUp));
+        clip.start();
+        
+        }catch(Exception e){
+            System.out.println("Audio error!");
+        }
+        
     }
 
     private class Ucitanje extends Thread {
@@ -58,17 +75,17 @@ public class SplashScreen extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(176, 176, 176)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(183, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(177, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(33, 33, 33))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(135, 135, 135)
+                .addGap(136, 136, 136)
                 .addComponent(jLabel1)
-                .addContainerGap(149, Short.MAX_VALUE))
+                .addContainerGap(148, Short.MAX_VALUE))
         );
 
         pack();
