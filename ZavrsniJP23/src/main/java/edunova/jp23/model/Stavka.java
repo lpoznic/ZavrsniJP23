@@ -14,7 +14,7 @@ import javax.persistence.OneToMany;
  * @author Pozna
  */
 @Entity
-public class Clan extends Entitet{
+public class Stavka extends Entitet{
     
     @ManyToOne
     private Artikl artikl;

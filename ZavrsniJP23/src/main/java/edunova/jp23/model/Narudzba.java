@@ -76,14 +76,14 @@ public class Narudzba extends Entitet{
     }
     
     
-    @OneToMany(mappedBy = "artikl")
-    private List<Clan> artikli = new ArrayList<>();
+    @OneToMany(mappedBy = "narudzba")
+    private List<Stavka> artikli = new ArrayList<>();
 
-    public List<Clan> getArtikli() {
+    public List<Stavka> getArtikli() {
         return artikli;
     }
 
-    public void setArtikli(List<Clan> artikli) {
+    public void setArtikli(List<Stavka> artikli) {
         this.artikli = artikli;
     }
     
@@ -97,5 +97,19 @@ public class Narudzba extends Entitet{
         }
         return "["+getId()+"], " +df.format(d)+ ", "+ getOperater().getImePrezime();
     }
+    
+    
+   
+    
+    public String ukupnaCijenaToString(){
+        
+        if(getUkupnaCijena()!=null){
+            return getUkupnaCijena().toString();
+        }
+        return "0";
+        
+    }
+    
+    
     
 }

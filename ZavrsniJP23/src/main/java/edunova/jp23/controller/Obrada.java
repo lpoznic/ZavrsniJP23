@@ -68,7 +68,7 @@ public abstract class Obrada<T> {
         session.getTransaction().commit();
     }
     
-    private void kontrola() throws EdunovaException{
+    protected void kontrola() throws EdunovaException{
         Set<ConstraintViolation<T>> constraintViolations = validator.validate(this.entitet);
         
         if(constraintViolations.size()>0){

@@ -51,17 +51,6 @@
             <Property name="text" type="java.lang.String" value="Vrijeme"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="jButton1">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="O nama"/>
-            <Property name="focusable" type="boolean" value="false"/>
-            <Property name="horizontalTextPosition" type="int" value="0"/>
-            <Property name="verticalTextPosition" type="int" value="3"/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
-          </Events>
-        </Component>
       </SubComponents>
     </Container>
     <Container class="javax.swing.JTabbedPane" name="tabbedPane">
@@ -105,7 +94,7 @@
                           </Group>
                           <Component id="btnUredi" min="-2" pref="71" max="-2" attributes="0"/>
                           <Group type="102" alignment="1" attributes="0">
-                              <Component id="btnDodaj" max="32767" attributes="0"/>
+                              <Component id="btnDodaj" pref="71" max="32767" attributes="0"/>
                               <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
                               <Component id="btnUkloni" min="-2" pref="70" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
@@ -120,9 +109,11 @@
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
                                           <Component id="jLabel1" min="-2" pref="89" max="-2" attributes="0"/>
-                                          <Component id="btnDodajUNarudzbu" min="-2" pref="85" max="-2" attributes="0"/>
                                           <Component id="txtPretraga" min="-2" pref="85" max="-2" attributes="0"/>
-                                          <Component id="btnUkloniIzNarudzbe" alignment="0" min="-2" pref="85" max="-2" attributes="0"/>
+                                          <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                                              <Component id="btnUkloniIzNarudzbe" alignment="0" max="32767" attributes="0"/>
+                                              <Component id="btnDodajUNarudzbu" alignment="0" pref="85" max="32767" attributes="0"/>
+                                          </Group>
                                       </Group>
                                   </Group>
                                   <Group type="102" alignment="0" attributes="0">
@@ -214,15 +205,15 @@
                                                       <Group type="103" groupAlignment="0" attributes="0">
                                                           <Group type="102" alignment="1" attributes="0">
                                                               <Component id="lblTrenutniZaposlenik" min="-2" max="-2" attributes="0"/>
-                                                              <EmptySpace max="-2" attributes="0"/>
+                                                              <EmptySpace min="-2" pref="61" max="-2" attributes="0"/>
                                                           </Group>
                                                           <Group type="102" alignment="1" attributes="0">
                                                               <Component id="btnDodajUNarudzbu" min="-2" max="-2" attributes="0"/>
                                                               <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
+                                                              <Component id="btnUkloniIzNarudzbe" min="-2" max="-2" attributes="0"/>
+                                                              <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
                                                           </Group>
                                                       </Group>
-                                                      <Component id="btnUkloniIzNarudzbe" min="-2" max="-2" attributes="0"/>
-                                                      <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
                                                       <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                                                       <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
                                                   </Group>
@@ -324,7 +315,7 @@
 
               <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
               <SubComponents>
-                <Component class="javax.swing.JList" name="lstSviArtikli">
+                <Component class="javax.swing.JList" name="lstSveStavke">
                   <Properties>
                     <Property name="model" type="javax.swing.ListModel" editor="org.netbeans.modules.form.editors2.ListModelEditor">
                       <StringArray count="0"/>
@@ -368,9 +359,6 @@
                   <StringArray count="0"/>
                 </Property>
               </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cmbKupciActionPerformed"/>
-              </Events>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;Kupac&gt;"/>
               </AuxValues>
@@ -390,14 +378,14 @@
 
               <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
               <SubComponents>
-                <Component class="javax.swing.JList" name="lstTrenutniArtikli">
+                <Component class="javax.swing.JList" name="lstTrenutneStavke">
                   <Properties>
                     <Property name="model" type="javax.swing.ListModel" editor="org.netbeans.modules.form.editors2.ListModelEditor">
                       <StringArray count="0"/>
                     </Property>
                   </Properties>
                   <AuxValues>
-                    <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;Clan&gt;"/>
+                    <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;edunova.jp23.model.Stavka&gt;"/>
                   </AuxValues>
                 </Component>
               </SubComponents>
@@ -564,9 +552,6 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="txtNazivDobavljaca">
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtNazivDobavljacaActionPerformed"/>
-              </Events>
             </Component>
             <Component class="javax.swing.JTextField" name="txtImeVlasnikaDobavljaca">
             </Component>
@@ -746,6 +731,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Ukloni"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnUkloniZaposlenikActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JTextField" name="txtPrezime">
             </Component>
@@ -779,16 +767,12 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JPasswordField" name="pwdZaporkaZaposlenika">
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="pwdZaporkaZaposlenikaActionPerformed"/>
-              </Events>
             </Component>
           </SubComponents>
         </Container>
         <Container class="javax.swing.JPanel" name="paneArtikl">
           <Events>
             <EventHandler event="componentShown" listener="java.awt.event.ComponentListener" parameters="java.awt.event.ComponentEvent" handler="paneArtiklComponentShown"/>
-            <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="paneArtiklKeyPressed"/>
           </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
@@ -936,9 +920,6 @@
               </Events>
             </Component>
             <Component class="javax.swing.JTextField" name="txtNazivArtikla">
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtNazivArtiklaActionPerformed"/>
-              </Events>
             </Component>
             <Component class="javax.swing.JTextField" name="txtCijenaArtikla">
             </Component>

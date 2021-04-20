@@ -41,6 +41,9 @@ public class Kupac extends Osoba{
         if(getPrezime() == null || getPrezime().isEmpty()){
             return "[Prezime nije definirano]";
         }
+        if(getPrezime() == null && getIme().isEmpty()){
+            return null;
+        }
         return getIme() + " " + getPrezime();
     }
     

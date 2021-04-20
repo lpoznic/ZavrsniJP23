@@ -5,7 +5,7 @@
  */
 package edunova.jp23.controller;
 
-import edunova.jp23.model.Clan;
+import edunova.jp23.model.Stavka;
 import edunova.jp23.util.EdunovaException;
 import java.util.List;
 
@@ -13,11 +13,10 @@ import java.util.List;
  *
  * @author Pozna
  */
-public class ObradaClan extends Obrada {
+public class ObradaStavka extends Obrada {
     @Override
-    public List<Clan> getPodaci() {
-        //https://docs.jboss.org/hibernate/orm/3.3/reference/en/html/queryhql.html
-        List<Clan> lista =session.createQuery("from Clan").list();
+    public List<Stavka> getPodaci() {
+        List<Stavka> lista =session.createQuery("from Clan").list();
       
         return lista;
     }
