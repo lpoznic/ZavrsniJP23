@@ -29,15 +29,7 @@ public class SplashScreen extends javax.swing.JFrame {
         initComponents();
         Ucitanje load = new Ucitanje();
         load.start();
-        File startUp = new File("src\\audio\\SplashScreen.mp3");
-        try{
-        Clip clip = AudioSystem.getClip();
-        clip.open(AudioSystem.getAudioInputStream(startUp));
-        clip.start();
         
-        }catch(Exception e){
-            System.out.println("Audio error!");
-        }
         
     }
 

@@ -24,7 +24,7 @@ public class Autorizacija extends javax.swing.JFrame {
      */
     public Autorizacija() {
         initComponents();
-        setTitle(Aplikacija.NASLOV_APP);
+        setTitle("Prozor za autorizaciju");
         txtMail.setText("lpoznic@outlook.com");
         pswZaporka.setText("edunova");
     }
