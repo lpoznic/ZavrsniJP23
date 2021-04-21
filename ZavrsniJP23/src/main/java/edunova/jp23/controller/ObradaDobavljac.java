@@ -26,7 +26,18 @@ public class ObradaDobavljac extends Obrada<Dobavljac>{
     
     @Override
     public List<Dobavljac> getPodaci() {
-        return session.createQuery("from Dobavljac").list();
+        return session.createQuery("from Dobavljac d"
+                + " order by d.naziv").list();
+    }
+    
+     public List<Dobavljac> getPodaci(String uvjet) {
+        return session.createQuery("from Dobavljac d "
+                + " where concat(d.naziv) "
+                + " like :uvjet order by d.naziv")
+                .setParameter("uvjet", "%" + uvjet + "%")
+                
+                .setMaxResults(20)
+                .list();
     }
 
     @Override

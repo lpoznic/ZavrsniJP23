@@ -23,7 +23,8 @@ public class ObradaNarudzba extends Obrada<Narudzba>{
 
     @Override
     public List<Narudzba> getPodaci() {
-        List<Narudzba> lista =session.createQuery("from Narudzba").list();
+        List<Narudzba> lista =session.createQuery("from Narudzba n"
+                + " order by n.id").list();
         session.setCacheMode(CacheMode.IGNORE);
         return lista;
     }

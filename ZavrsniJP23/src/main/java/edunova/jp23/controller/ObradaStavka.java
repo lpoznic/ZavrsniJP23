@@ -16,7 +16,7 @@ import java.util.List;
 public class ObradaStavka extends Obrada {
     @Override
     public List<Stavka> getPodaci() {
-        List<Stavka> lista =session.createQuery("from Clan").list();
+        List<Stavka> lista =session.createQuery("from Stavka").list();
       
         return lista;
     }

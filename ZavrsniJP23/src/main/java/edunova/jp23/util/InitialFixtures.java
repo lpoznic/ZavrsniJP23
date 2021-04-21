@@ -9,7 +9,15 @@ import edunova.jp23.model.Artikl;
 import edunova.jp23.model.Dobavljac;
 import edunova.jp23.model.Kupac;
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
+import com.github.javafaker.Faker;
+import java.net.URL;
+import java.util.Scanner;
+import org.jsoup.nodes.Document;
 import org.hibernate.Session;
+import org.jsoup.Jsoup;
+import us.codecraft.xsoup.Xsoup;
 
 /**
  *
@@ -24,33 +32,42 @@ public class InitialFixtures {
         
         Session s = HibernateUtil.getSession();
         s.beginTransaction();
+        Faker faker = new Faker();
+        List<Kupac> kupci=new ArrayList<>();
         
-        Kupac kupac = new Kupac();
-        kupac.setIme("Zoran");
-        kupac.setPrezime("Maričić");
-        kupac.setEmail("zmaricic@gmail.com");
-        kupac.setAdresa("Strossmayerova 26");
-        kupac.setKontakt("0957822635");
-        kupac.setOib("72366372948");
-        s.save(kupac);
-        
-        Dobavljac dobavljac = new Dobavljac();
-        dobavljac.setAdresa("Strossmayerova 24");
-        dobavljac.setImeVlasnika("Kota");
-        dobavljac.setNaziv("Mro Bobento");
-        s.save(dobavljac);
-        
-        Artikl artikl = new Artikl();
-        artikl.setCijena(BigDecimal.TEN);
-        artikl.setDobavljac(dobavljac);
-        artikl.setNaziv("Cigla");
-        s.save(artikl);
-        
+        Kupac k;
+        for(int i=0;i<30;i++){
+            k= new Kupac();
+            k.setIme(faker.name().firstName());
+            k.setPrezime(faker.name().lastName());
+            k.setEmail("generic@email.npc");
+            k.setOib(getOIB());
+            s.save(k);
+            kupci.add(k);
+        }
         
         
         s.getTransaction().commit();
         
         
     
+    }
+    
+    public static String getOIB(){
+        //http://oib.itcentrala.com/oib-generator/
+        try {
+            String html = new Scanner(
+                    new URL("http://oib.itcentrala.com/oib-generator/")
+                            .openStream(),"UTF-8").useDelimiter("\\A").next();
+            //System.out.println(html);
+            
+            Document d = Jsoup.parse(html);
+            //
+            return Xsoup.compile("/html/body/div[1]/div[1]/text()")
+                    .evaluate(d).get();
+        } catch (Exception e) {
+            return null;
+        }
+        
     }
 }

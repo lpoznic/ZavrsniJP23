@@ -36,10 +36,10 @@ public class Kupac extends Osoba{
     @Override
     public String toString() {
         if(getIme() == null || getIme().isEmpty()){
-            return "[Ime nije definirano]";
+            return "Odaberite kupca";
         }
         if(getPrezime() == null || getPrezime().isEmpty()){
-            return "[Prezime nije definirano]";
+            return "Odaberite kupca";
         }
         if(getPrezime() == null && getIme().isEmpty()){
             return null;

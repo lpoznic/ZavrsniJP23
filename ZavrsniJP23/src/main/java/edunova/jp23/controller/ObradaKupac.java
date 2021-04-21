@@ -28,9 +28,19 @@ public class ObradaKupac extends Obrada<Kupac>{
 
     @Override
     public List<Kupac> getPodaci() {
-       return session.createQuery("from Kupac").list();
+       return session.createQuery("from Kupac k"
+               + " order by k.prezime, k.ime").list();
     }
-
+    
+    public List<Kupac> getPodaci(String uvjet) {
+        return session.createQuery("from Kupac k "
+                + " where concat(k.prezime) "
+                + " like :uvjet order by k.prezime, k.ime")
+                .setParameter("uvjet", "%" + uvjet + "%")
+                
+                .setMaxResults(20)
+                .list();
+    }
     @Override
     protected void kontrolaCreate() throws EdunovaException {
         

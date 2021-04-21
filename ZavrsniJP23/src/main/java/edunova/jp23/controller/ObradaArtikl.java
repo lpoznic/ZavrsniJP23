@@ -18,7 +18,8 @@ public class ObradaArtikl extends Obrada<Artikl>{
 
     @Override
     public List<Artikl> getPodaci() {
-        return session.createQuery("from Artikl").list();
+        return session.createQuery("from Artikl a "
+                + " order by a.naziv").list();
     }
     
     public List<Artikl> getPodaci(String uvjet) {

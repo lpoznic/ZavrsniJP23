@@ -38,7 +38,8 @@ public class ObradaOperater extends ObradaOsoba<Operater>{
     
     @Override
     public List<Operater> getPodaci() {
-        return session.createQuery("from Operater").list();
+        return session.createQuery("from Operater o"
+                + " order by o.prezime, o.ime").list();
     }
 
     @Override
