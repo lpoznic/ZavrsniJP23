@@ -1240,9 +1240,6 @@ public class Izbornik extends javax.swing.JFrame {
             m= new DefaultListModel<>();
             lstTrenutneStavke.setModel(m);
         }
-//       if (lstTrenutneStavke.getSelectedValue() == null) {
-//            return;
-//        }
 
          
        for(Artikl a : lstSveStavke.getSelectedValuesList()){
@@ -1407,6 +1404,9 @@ public class Izbornik extends javax.swing.JFrame {
         } catch (EdunovaException e) {
             JOptionPane.showMessageDialog(rootPane, e.getPoruka());
         }
+        
+        
+        
     }//GEN-LAST:event_btnUkloniArtiklActionPerformed
 
     private void btnUkloniDobavljacaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUkloniDobavljacaActionPerformed
@@ -1505,7 +1505,7 @@ public class Izbornik extends javax.swing.JFrame {
         }
         
         for(Narudzba n:obradaN.getPodaci()){
-             if(n==lstNarudzbe.getSelectedValue()){
+             if(n.getKupac()==lstKupci.getSelectedValue()){
                  
                  try {
                      obradaN.setEntitet(n);
@@ -1533,19 +1533,32 @@ public class Izbornik extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(rootPane, "Prvo odaberite stavku");
             return;
         }
+        if (obradaO.getEntitet()==Aplikacija.operater) {
+            JOptionPane.showMessageDialog(rootPane, "Ne možete izbrisati svog operatera");
+            return;
+        }
         
         for(Narudzba n:obradaN.getPodaci()){
-             if(n==lstNarudzbe.getSelectedValue()){
-                 
+            for(Stavka s:obradaS.getPodaci()){
+             if(s.getNarudzba()==n){
+                     try {
+                     obradaS.setEntitet(s);
+                     obradaS.delete();
+                 } catch (EdunovaException e) {
+                     System.out.println(e.getPoruka());
+                 }
+                 }
+             
+             }
+             if(n.getOperater()==lstZaposlenici.getSelectedValue()){
                  try {
                      obradaN.setEntitet(n);
                      obradaN.delete();
-                 } catch (EdunovaException ex) {
-                     Logger.getLogger(Izbornik.class.getName()).log(Level.SEVERE, null, ex);
+                 } catch (EdunovaException e) {
+                     System.out.println(e.getPoruka());
                  }
-             }
          }
-
+        }
         try {
             obradaO.delete();
             pocistiO();
