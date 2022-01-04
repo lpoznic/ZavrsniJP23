@@ -11,7 +11,7 @@ import edunova.jp23.model.Dobavljac;
  *
  * @author Pozna
  */
-public class CiscenjePodataka {
+public class CiscenjeVrijednosti {
     public void pocistiNarudzbu(javax.swing.JLabel lblDatum, javax.swing.JLabel lblTrenutniZaposlenik, javax.swing.JLabel lblVrijeme, javax.swing.JLabel lblBrojRacuna,
             javax.swing.JLabel lblUkCijena, javax.swing.JList<edunova.jp23.model.Stavka> lstTrenutneStavke) {
         lblDatum.setText("");

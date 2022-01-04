@@ -22,7 +22,7 @@ import javax.swing.DefaultListModel;
  *
  * @author Pozna
  */
-public class UcitavanjePodataka {
+public class UcitavanjeVrijednosti {
     public void ucitajNarudzbe(ObradaNarudzba obradaN, javax.swing.JList<Narudzba> lstNarudzbe){
         DefaultListModel<Narudzba> m = new DefaultListModel<>();
 
